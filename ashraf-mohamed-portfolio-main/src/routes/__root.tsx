@@ -12,8 +12,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { SiteHeader } from "@/components/site/site-header";
-import { SiteFooter } from "@/components/site/site-footer";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 
 function NotFoundComponent() {
   return (
@@ -77,17 +78,14 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
-    // Replace these placeholders with the app's name and description when first building the app.
-    // Each content route, / included, must still set its own head(). Never add og:image or
-    // twitter:image here: every page without its own would inherit the root's preview image.
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Ashraf Mohammed — Developer, Designer & Video Editor" },
-      { name: "description", content: "Portfolio of Ashraf Mohammed: full-stack development, graphic design and video editing." },
-      { name: "author", content: "Ashraf Mohammed" },
-      { property: "og:title", content: "Ashraf Mohammed — Developer, Designer & Video Editor" },
-      { property: "og:description", content: "Portfolio of Ashraf Mohammed: full-stack development, graphic design and video editing." },
+      { title: "Ashraf Mohamed — Full Stack Developer" },
+      { name: "description", content: "Portfolio of Ashraf Mohamed, a full stack developer building fast, modern websites and web apps." },
+      { name: "author", content: "Ashraf Mohamed" },
+      { property: "og:title", content: "Ashraf Mohamed — Full Stack Developer" },
+      { property: "og:description", content: "Portfolio of Ashraf Mohamed, a full stack developer building fast, modern websites and web apps." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -96,12 +94,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap",
       },
     ],
   }),
@@ -131,11 +129,14 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <SiteHeader />
-      <main>
-        <Outlet />
-      </main>
-      <SiteFooter />
+      <div className="flex min-h-screen flex-col">
+        <SiteHeader />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <SiteFooter />
+        <WhatsAppButton />
+      </div>
     </QueryClientProvider>
   );
 }

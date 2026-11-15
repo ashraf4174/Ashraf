@@ -30,5 +30,5 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Project rules
-- Portfolio content (profile, projects, disciplines) lives in one data module (`src/lib/portfolio.ts`); pages read from it so content edits happen in one place.
-- Site header/footer are rendered in `src/routes/__root.tsx` around `<Outlet />`; each section (work, about, contact) is its own route for SEO.
+- Profile details, skills and project list live in `src/data/profile.ts`; pages read from it so content changes happen in one place.
+- Shared header/footer wrap `<Outlet />` in `src/routes/__root.tsx`; each section (home, projects, contact) is its own route for crawlable URLs.
